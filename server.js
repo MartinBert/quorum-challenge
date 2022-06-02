@@ -4,7 +4,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const http = require('http').createServer(app);
-const routes = require('./routes/index');
+const routes = require('./src/routes/index');
 const {preloadedUsers} = require('./dataload');
 const {PrismaClient} = require('@prisma/client');
 const prisma = new PrismaClient();
@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 app.use(routes);
 
 const fillDatabase = async() => {
-    const filledUser = await prisma.users.findUnique({where: {id : 2}})
+    const filledUser = await prisma.users.findUnique({where: {id : 10}})
     if(filledUser == null){
         for(let user of preloadedUsers){
             const result = await prisma.users.create({data: user});
