@@ -6,7 +6,6 @@ const cors = require('cors');
 const compression = require('compression');
 const helmet = require('helmet');
 const http = require('http').createServer(app);
-const io = require('socket.io')(http);
 const routes = require('./src/routes/index');
 const {preloadedUsers} = require('./dataload');
 const {PrismaClient} = require('@prisma/client');
@@ -19,10 +18,6 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(compression());
 app.use(routes);
 
-io.on('connection', function(socket){
-    config.Socket = socket;
-});
-
 const fillDatabase = async() => {
     const filledUser = await prisma.users.findUnique({where: {id : 10}})
     if(filledUser == null){
@@ -32,7 +27,6 @@ const fillDatabase = async() => {
         console.log('Database filled');
     }
 }
-
 fillDatabase();
 
 http.listen(3000, async() => {

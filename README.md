@@ -7,15 +7,20 @@ Install the following packages:
 * docker
 * docker-compose
 
-##### Step 1 – Clone the repository
+##### Step 0 – Clone the repository
 ```sh
 > git clone https://github.com/MartinBert/quorum-challenge .
+```
+
+##### Step 1 – Add a .env file at the root of the project with the following content:
+```sh
+DATABASE_URL=postgresql://postgres:postgres@172.17.0.1:5432/challenge?schema=public
 ```
 
 ##### Step 2 – Execute the following commands
 ```sh
 > cd quorum-challenge
-> docker-compose up
+> docker compose up
 ```
 
 ##### Step 3 – Check the API is ready
