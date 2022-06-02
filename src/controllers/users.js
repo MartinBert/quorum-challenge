@@ -3,10 +3,11 @@ const prisma = new PrismaClient();
 
 module.exports = {
     findAll: async(query) => {
-        const {skip, take} = query;
-        return await prisma.users.findMany({skip: parseInt(skip), take: parseInt(take), include: {
-            roles: true,
-        }});
+        const {skip, take, filter} = query;
+        if(filter){
+            return await prisma.users.findMany({skip: parseInt(skip),take: parseInt(take),include: {roles: true}, where: filter});
+        }
+        return await prisma.users.findMany({skip: parseInt(skip),take: parseInt(take),include: {roles: true}});
     },
     findById: async(id) => {
         return await prisma.users.findUnique({where: {id}});
@@ -15,10 +16,7 @@ module.exports = {
         return await prisma.users.findFirst({where: {email}}); 
     },
     create: async(user) => {
-        const result = await prisma.users.create(user);
-        console.log(result);
-        return result;
-
+        return await prisma.users.create({data: {...user}});
     },
     createMany: async(users) => {
         return await prisma.users.createMany(users);

@@ -4,7 +4,7 @@ const prisma = new PrismaClient();
 module.exports = {
     findAll: async(query) => {
         const {skip, take} = query;
-        return await prisma.roles.findMany({skip: parseInt(skip), take: parseInt(take)});
+        return await prisma.roles.findMany({skip: parseInt(skip), take: parseInt(take), include: {permissions: true}});
     },
     findById: async(id) => {
         return await prisma.roles.findUnique({where: {id}});
