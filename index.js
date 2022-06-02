@@ -32,6 +32,7 @@ const fillDatabase = async() => {
         console.log('Database filled');
     }
 }
+
 fillDatabase();
 
 http.listen(3000, async() => {

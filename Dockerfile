@@ -1,4 +1,4 @@
-FROM node:18-alpine3.14
+FROM node:16.15
 
 WORKDIR /usr/src/app
 
@@ -9,4 +9,7 @@ COPY . .
 
 EXPOSE 3000
 
-CMD [ "npm", "run", "start"]
+ADD start.sh /
+RUN chmod +x /start.sh
+
+CMD ["/start.sh"]
