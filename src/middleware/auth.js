@@ -41,16 +41,7 @@ module.exports = {
                     userController.findByEmail(loggedUser.email)
                     .then(user => {
                         if(user) {
-                            let permissions = [];
-                            user.roles.forEach(({role}) => {
-                                role.permissions.forEach(({permissionId}) => {
-                                    permissions.push(permissionId);
-                                })
-                            })
-                            user.permissions.forEach(({permissionId}) => {
-                                permissions.push(permissionId);
-                            })
-                            req.permissions = permissions;
+                            req.user = user;
                             return resolve(true)
                         };
                         return res.status(403).send(unauthorizedResponse);

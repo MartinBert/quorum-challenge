@@ -16,6 +16,18 @@ module.exports = {
                       permission: {
                         create: {
                           name: "createUsers",
+                          routes: {
+                            create: [
+                              {
+                                route: {
+                                  create: {
+                                    path: "/users",
+                                    method: "POST",
+                                  }
+                                }
+                              },
+                            ]
+                          }
                         }
                       }
                     },
@@ -23,6 +35,18 @@ module.exports = {
                       permission: {
                         create: {
                           name: "deleteUsers",
+                          routes: {
+                            create: [
+                              {
+                                route: {
+                                  create: {
+                                    path: "/users",
+                                    method: "DELETE",
+                                  }
+                                }
+                              }
+                            ]
+                          }
                         }
                       }
                     },
@@ -30,6 +54,18 @@ module.exports = {
                       permission: {
                         create: {
                           name: "editUsers",
+                          routes: {
+                            create: [
+                              {
+                                route: {
+                                  create: {
+                                    path: "/users",
+                                    method: "PUT",
+                                  }
+                                }
+                              },
+                            ]
+                          }
                         }
                       }
                     }
@@ -57,6 +93,18 @@ module.exports = {
                       permission: {
                         create: {
                           name: "addRoles",
+                          routes: {
+                            create: [
+                              {
+                                route: {
+                                  create: {
+                                    path: "/users/addRole",
+                                    method: "PUT",
+                                  }
+                                }
+                              },
+                            ]
+                          }
                         }
                       }
                     },
@@ -64,6 +112,18 @@ module.exports = {
                       permission: {
                         create: {
                           name: "addPermissions",
+                          routes: {
+                            create: [
+                              {
+                                route: {
+                                  create: {
+                                    path: "/users/addPermission",
+                                    method: "PUT",
+                                  }
+                                }
+                              },
+                            ]
+                          }
                         }
                       }
                     },
@@ -91,6 +151,18 @@ module.exports = {
                       permission:{
                         create: {
                           name: "createPermissions",
+                          routes: {
+                            create: [
+                              {
+                                route: {
+                                  create: {
+                                    path: "/permissions",
+                                    method: "POST",
+                                  }
+                                }
+                              },
+                            ]
+                          }
                         }
                       }
                     },
@@ -98,6 +170,18 @@ module.exports = {
                       permission:{
                         create: {
                           name: "deletePermissions",
+                          routes: {
+                            create: [
+                              {
+                                route: {
+                                  create: {
+                                    path: "/permissions",
+                                    method: "DELETE",
+                                  }
+                                }
+                              },
+                            ]
+                          }
                         }
                       }
                     },
@@ -105,6 +189,18 @@ module.exports = {
                       permission:{
                         create: {
                           name: "editPermissions",
+                          routes: {
+                            create: [
+                              {
+                                route: {
+                                  create: {
+                                    path: "/permissions",
+                                    method: "PUT",
+                                  }
+                                }
+                              },
+                            ]
+                          }
                         }
                       }
                     },
@@ -132,6 +228,18 @@ module.exports = {
                       permission:{
                         create: {
                           name: "createRoles",
+                          routes: {
+                            create: [
+                              {
+                                route: {
+                                  create: {
+                                    path: "/roles",
+                                    method: "POST",
+                                  }
+                                }
+                              },
+                            ]
+                          }
                         }
                       }
                     },
@@ -139,6 +247,18 @@ module.exports = {
                       permission:{
                         create: {
                           name: "deleteRoles",
+                          routes: {
+                            create: [
+                              {
+                                route: {
+                                  create: {
+                                    path: "/roles",
+                                    method: "DELETE",
+                                  }
+                                }
+                              },
+                            ]
+                          }
                         }
                       }
                     },
@@ -146,6 +266,18 @@ module.exports = {
                       permission:{
                         create: {
                           name: "editRoles",
+                          routes: {
+                            create: [
+                              {
+                                route: {
+                                  create: {
+                                    path: "/roles",
+                                    method: "PUT",
+                                  }
+                                }
+                              },
+                            ]
+                          }
                         }
                       }
                     },

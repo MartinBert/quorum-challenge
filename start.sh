@@ -1,2 +1,2 @@
 #!/bin/sh
-npx prisma migrate dev && npm run start
+npx prisma migrate reset --force && npx prisma migrate dev && npm run start

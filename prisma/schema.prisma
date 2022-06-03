@@ -29,8 +29,16 @@ model Roles {
 model Permissions {
   id Int @id @default(autoincrement())
   name String
+  routes RoutesOnPermissions[]
   users PermissionsOnUsers[]
   roles PermissionsOnRoles[]
+}
+
+model Routes {
+  id Int @id @default(autoincrement())
+  path String
+  method String
+  permissions RoutesOnPermissions[]
 }
 
 model RolesOnUsers {
@@ -55,4 +63,12 @@ model PermissionsOnRoles {
   permission Permissions @relation(fields: [permissionId], references: [id], onDelete: Cascade)
   permissionId Int 
   @@id([roleId, permissionId])
+}
+
+model RoutesOnPermissions {
+  permission Permissions @relation(fields: [permissionId], references: [id], onDelete: Cascade)
+  permissionId Int
+  route Routes @relation(fields: [routeId], references: [id], onDelete: Cascade)
+  routeId Int
+  @@id([permissionId, routeId])
 }

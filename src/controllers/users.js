@@ -15,7 +15,15 @@ module.exports = {
               include: {
                 permissions: {
                   include: {
-                    permission: true,
+                    permission: {
+                      include: {
+                        routes: {
+                          include: {
+                            route: true
+                          }
+                        }
+                      }
+                    },
                   },
                 },
               },
@@ -24,7 +32,15 @@ module.exports = {
         },
         permissions: {
           include: {
-            permission: true,
+            permission: {
+              include: {
+                routes: {
+                  include: {
+                    route: true
+                  }
+                }
+              }
+            },
           },
         },
       },
@@ -41,7 +57,15 @@ module.exports = {
               include: {
                 permissions: {
                   include: {
-                    permission: true,
+                    permission: {
+                      include: {
+                        routes: {
+                          include: {
+                            route: true
+                          }
+                        }
+                      }
+                    },
                   },
                 },
               },
@@ -50,7 +74,15 @@ module.exports = {
         },
         permissions: {
           include: {
-            permission: true,
+            permission: {
+              include: {
+                routes: {
+                  include: {
+                    route: true
+                  }
+                }
+              }
+            },
           },
         },
       },
@@ -67,7 +99,15 @@ module.exports = {
               include: {
                 permissions: {
                   include: {
-                    permission: true,
+                    permission: {
+                      include: {
+                        routes: {
+                          include: {
+                            route: true
+                          }
+                        }
+                      }
+                    },
                   },
                 },
               },
@@ -76,7 +116,15 @@ module.exports = {
         },
         permissions: {
           include: {
-            permission: true,
+            permission: {
+              include: {
+                routes: {
+                  include: {
+                    route: true
+                  }
+                }
+              }
+            },
           },
         },
       },
