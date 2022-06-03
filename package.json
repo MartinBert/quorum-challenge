@@ -4,7 +4,7 @@
   "description": "Challenge of Quorum IT",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --legacy-watch index.js",
+    "start": "node index.js",
     "test": "test"
   },
   "author": "Martin Bertello",
