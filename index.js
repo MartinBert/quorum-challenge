@@ -10,7 +10,23 @@ const routes = require('./src/routes/index');
 const {preloadedUsers} = require('./dataload');
 const {PrismaClient} = require('@prisma/client');
 const prisma = new PrismaClient();
+const path = require('path');
+const swaggerUi = require('swagger-ui-express');
+const swaggerJsDoc = require('swagger-jsdoc');
 
+const swaggerSpec = {
+    definition: {
+        openapi: "3.0.0",
+        info: {
+            title: "Node application",
+            version: "1.0.0"
+        },
+    },
+    basePath: "/",
+    apis: ["./src/routes/*.js"]
+}
+
+app.use('/api-doc', swaggerUi.serve, swaggerUi.setup(swaggerJsDoc(swaggerSpec)))
 app.use(cors());
 app.use(helmet());
 app.use(bodyParser.json());
