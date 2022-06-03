@@ -2,6 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const controller = require('../controllers/users');
+const middleware = require('../middleware/permissionCheck');
 
 router.get('/', async(req, res) => {
   res.status(200).send({users: await controller.findAll(req.query)});
@@ -19,8 +20,9 @@ router.put('/', async(req, res) => {
   res.status(200).send({user: await controller.edit(req.body)})
 })
 
-router.delete('/:id', async(req, res) => {
-  res.status(200).send({user: await controller.delete(parseInt(req.params.id))})
+router.delete('/:id', middleware.checkPermission ,async(req, res) => {
+  console.log('deleteado pete')
+  //res.status(200).send({user: await controller.delete(parseInt(req.params.id))})
 })
 
 module.exports = router;

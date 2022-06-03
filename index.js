@@ -19,8 +19,8 @@ app.use(compression());
 app.use(routes);
 
 const fillDatabase = async() => {
-    const filledUser = await prisma.users.findUnique({where: {id : 10}})
-    if(filledUser == null){
+    const filledPermission = await prisma.permissions.findFirst();
+    if(!filledPermission){
         for(let user of preloadedUsers){
             await prisma.users.create({data: user});
         }

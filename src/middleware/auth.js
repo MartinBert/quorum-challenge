@@ -1,8 +1,10 @@
 const userController = require('../controllers/users');
+const roleController = require('../controllers/roles');
 const fs = require('fs');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const path = require('path');
+const roles = require('../controllers/roles');
 const public_key = fs.readFileSync(path.dirname(__dirname) + '/middleware/jwtRS256.key.pub');
 const private_key = fs.readFileSync(path.dirname(__dirname) + '/middleware/jwtRS256.key');
 
@@ -38,7 +40,19 @@ module.exports = {
                     if(err) return res.status(403).send(unauthorizedResponse);
                     userController.findByEmail(loggedUser.email)
                     .then(user => {
-                        if(user) return resolve(true);
+                        if(user) {
+                            let permissions = [];
+                            user.roles.forEach(({role}) => {
+                                role.permissions.forEach(({permissionId}) => {
+                                    permissions.push(permissionId);
+                                })
+                            })
+                            user.permissions.forEach(({permissionId}) => {
+                                permissions.push(permissionId);
+                            })
+                            req.permissions = permissions;
+                            return resolve(true)
+                        };
                         return res.status(403).send(unauthorizedResponse);
                     })
                 })

@@ -8,16 +8,79 @@ module.exports = {
     return await prisma.users.findMany({
       skip: parseInt(skip),
       take: parseInt(take),
-      include: { roles: true },
+      include: {
+        roles: {
+          include: {
+            role: {
+              include: {
+                permissions: {
+                  include: {
+                    permission: true,
+                  },
+                },
+              },
+            },
+          },
+        },
+        permissions: {
+          include: {
+            permission: true,
+          },
+        },
+      },
     });
   },
 
   findById: async (id) => {
-    return await prisma.users.findUnique({ where: { id } });
+    return await prisma.users.findUnique({
+      where: { id },
+      include: {
+        roles: {
+          include: {
+            role: {
+              include: {
+                permissions: {
+                  include: {
+                    permission: true,
+                  },
+                },
+              },
+            },
+          },
+        },
+        permissions: {
+          include: {
+            permission: true,
+          },
+        },
+      },
+    });
   },
 
   findByEmail: async (email) => {
-    return await prisma.users.findFirst({ where: { email } });
+    return await prisma.users.findFirst({
+      where: { email },
+      include: {
+        roles: {
+          include: {
+            role: {
+              include: {
+                permissions: {
+                  include: {
+                    permission: true,
+                  },
+                },
+              },
+            },
+          },
+        },
+        permissions: {
+          include: {
+            permission: true,
+          },
+        },
+      },
+    });
   },
 
   create: async (user) => {
