@@ -2,6 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const controller = require('../controllers/permissions');
+
 /**
  * @swagger
  * 
@@ -23,12 +24,6 @@ const controller = require('../controllers/permissions');
  *         schema:
  *           type: integer
  *         description: Number of items per page
- *       - in: headers
- *         name: Authorization
- *         required: true
- *         schema:
- *           type: string
- *         description: Token of login
  *     responses:
  *       200:
  *         description: create permission
@@ -37,6 +32,25 @@ router.get('/', async(req, res) => {
   res.status(200).send({permissions: await controller.findAll(req.query)});
 });
 
+/**
+ * @swagger
+ * 
+ * /permissions/id:
+ *   get:
+ *     description: Ger permission by id
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - in: params
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: Id of permission
+ *     responses:
+ *       200:
+ *         description: create permission
+ */
 router.get('/:id', async(req, res) => {
   res.status(200).send({permission: await controller.findById(parseInt(req.params.id))});
 }) 
@@ -108,6 +122,26 @@ router.put('/', async(req, res) => {
   res.status(200).send({permission: await controller.edit(req.body)})
 })
 
+
+/**
+ * @swagger
+ * 
+ * /permissions/id:
+ *   get:
+ *     description: Ger permission by id
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - in: params
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: Id of permission
+ *     responses:
+ *       200:
+ *         description: create permission
+ */
 router.delete('/:id', async(req, res) => {
   res.status(200).send({permission: await controller.delete(parseInt(req.params.id))})
 })
