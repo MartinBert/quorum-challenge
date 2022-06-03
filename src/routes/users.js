@@ -123,10 +123,66 @@ router.put('/', async(req, res) => {
   res.status(200).send({user: await controller.edit(req.body)})
 })
 
+/**
+ * @swagger
+ * 
+ * /user/addRoles:
+ *   put:
+ *     description: Add roles to user
+ *     produces:
+ *       - application/json
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               userId:
+ *                 type: integer
+ *               roles:
+ *                 type: array
+ *                 items:
+ *                   type: integer
+ *             required:
+ *               - id
+ *               - roles
+ *     responses:
+ *       200:
+ *         description: add role to user
+ */
 router.put('/addRoles', async(req, res) => {
   res.status(200).send({user: await controller.addRoles(req.body)})
 })
 
+/**
+ * @swagger
+ * 
+ * /user/addPermissions:
+ *   put:
+ *     description: Add permissions to user
+ *     produces:
+ *       - application/json
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               id:
+ *                 type: integer
+ *               permissions:
+ *                 type: array
+ *                 items:
+ *                   type: integer
+ *             required:
+ *               - id
+ *               - permissions
+ *     responses:
+ *       200:
+ *         description: edit user
+ */
 router.put('/addPermissions', async(req, res) => {
   res.status(200).send({user: await controller.addPermissions(req.body)})
 })
@@ -151,8 +207,7 @@ router.put('/addPermissions', async(req, res) => {
  *         description: create user
  */
 router.delete('/:id', middleware.checkPermission ,async(req, res) => {
-  console.log('deleteado pete')
-  //res.status(200).send({user: await controller.delete(parseInt(req.params.id))})
+  res.status(200).send({user: await controller.delete(parseInt(req.params.id))})
 })
 
 module.exports = router;
