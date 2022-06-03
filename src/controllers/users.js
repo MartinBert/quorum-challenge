@@ -1,18 +1,10 @@
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
-const {hash,formatUserPermissions,formatUserRoles,formatUser} = require("../helpers/userHelpers")
+const { formatUser } = require("../helpers/userHelpers");
 
 module.exports = {
   findAll: async (query) => {
-    const { skip, take, filter } = query;
-    if (filter) {
-      return await prisma.users.findMany({
-        skip: parseInt(skip),
-        take: parseInt(take),
-        include: { roles: true },
-        where: filter,
-      });
-    }
+    const { skip, take } = query;
     return await prisma.users.findMany({
       skip: parseInt(skip),
       take: parseInt(take),
@@ -34,35 +26,26 @@ module.exports = {
 
   edit: async (user) => {
     await prisma.rolesOnUsers.deleteMany({
-        where: {
-            userId: {
-                equals: user.id,
-            },
+      where: {
+        userId: {
+          equals: user.id,
         },
+      },
     });
-
     await prisma.permissionsOnUsers.deleteMany({
-        where: {
-            userId: {
-                equals: user.id,
-            },
+      where: {
+        userId: {
+          equals: user.id,
         },
+      },
     });
-
-    const object = {
+    const dataToUpdate = await formatUser(user);
+    return await prisma.users.update({
       where: {
         id: user.id,
       },
-      data: {
-        name: user.name,
-        email: user.email,
-        password: await hash(user),
-        roles: formatUserRoles(user),
-        permissions: formatUserPermissions(user),
-      },
-    };
-
-    return await prisma.users.update(object);
+      data: dataToUpdate.data,
+    });
   },
 
   delete: async (id) => {

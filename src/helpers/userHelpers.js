@@ -26,15 +26,12 @@ const formatUserRoles = (user) => {
 };
 
 const formatUser = async (user) => {
-  user.roles = formatUserRoles();
-  user.permissions = formatUserPermissions();
+  user.roles = formatUserRoles(user);
+  user.permissions = formatUserPermissions(user);
   user.password = await hash(user);
   return { data: { ...user } };
 };
 
 module.exports = {
-  hash,
-  formatUserPermissions,
-  formatUserRoles,
-  formatUser,
+  formatUser
 };
