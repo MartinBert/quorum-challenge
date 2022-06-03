@@ -14,7 +14,7 @@ Install the following packages:
 
 ##### Step 1 – Add a .env file at the root of the project with the following content:
 ```sh
-DATABASE_URL=postgresql://postgres:postgres@172.17.0.1:5432/challenge?schema=public
+DATABASE_URL=postgresql://postgres:postgres@172.17.0.1:5433/challenge?schema=public
 ```
 
 ##### Step 2 – Execute the following commands
@@ -46,3 +46,6 @@ The first time that you open PGAdmin you need to create a New Server with the fo
     * Password: **postgres**
 
 After you configure PGAdmin you should see the database with name **challenge** used in this project
+
+##### API doc:
+Go to http://localhost:3000/api-doc
