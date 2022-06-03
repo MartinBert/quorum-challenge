@@ -30,12 +30,19 @@ const middleware = require('../middleware/auth');
  *         description: login
  */
 router.post('/', async(req, res) => {
-  const token = await middleware.login(req.body);
-  if(token) return res.status(200).send({token});
-  return res.status(500).send({
-    error: 500,
-    message: 'Internal server error'
-  })
+  try{
+    const token = await middleware.login(req.body);
+    if(token) return res.status(200).send({token});
+    return res.status(500).send({
+      error: 500,
+      message: 'Internal server error'
+    })
+  }catch(err){
+    res.status(500).send({
+      error: 500,
+      errorMessage: err.message
+    })
+  }
 });
 
 module.exports = router;

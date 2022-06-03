@@ -30,7 +30,14 @@ const middleware = require('../middleware/permissionCheck');
  *         description: create user
  */
 router.get('/', async(req, res) => {
-  res.status(200).send({users: await controller.findAll(req.query)});
+  try{
+    res.status(200).send({users: await controller.findAll(req.query)});
+  }catch(err){
+    res.status(500).send({
+      error: 500,
+      errorMessage: err.message
+    })
+  }
 });
 
 /**
@@ -53,7 +60,14 @@ router.get('/', async(req, res) => {
  *         description: create user
  */
 router.get('/:id', async(req, res) => {
-  res.status(200).send({user: await controller.findById(parseInt(req.params.id))});
+  try{
+    res.status(200).send({user: await controller.findById(parseInt(req.params.id))});
+  }catch(err){
+    res.status(500).send({
+      error: 500,
+      errorMessage: err.message
+    })
+  }
 }) 
 
 /**
@@ -85,7 +99,14 @@ router.get('/:id', async(req, res) => {
  *         description: create user
  */
 router.post('/', async(req, res) => {
-  res.status(200).send({user: await controller.create(req.body)})
+  try{
+    res.status(200).send({user: await controller.create(req.body)})
+  }catch(err){
+    res.status(500).send({
+      error: 500,
+      errorMessage: err.message
+    })
+  }
 })
 
 /**
@@ -120,7 +141,14 @@ router.post('/', async(req, res) => {
  *         description: edit user
  */
 router.put('/', async(req, res) => {
-  res.status(200).send({user: await controller.edit(req.body)})
+  try{
+    res.status(200).send({user: await controller.edit(req.body)})
+  }catch(err){
+    res.status(500).send({
+      error: 500,
+      errorMessage: err.message
+    })
+  }
 })
 
 /**
@@ -152,7 +180,14 @@ router.put('/', async(req, res) => {
  *         description: add role to user
  */
 router.put('/addRoles', async(req, res) => {
-  res.status(200).send({user: await controller.addRoles(req.body)})
+  try{
+    res.status(200).send({user: await controller.addRoles(req.body)})
+  }catch(err){
+    res.status(500).send({
+      error: 500,
+      errorMessage: err.message
+    })
+  }
 })
 
 /**
@@ -184,7 +219,14 @@ router.put('/addRoles', async(req, res) => {
  *         description: edit user
  */
 router.put('/addPermissions', async(req, res) => {
-  res.status(200).send({user: await controller.addPermissions(req.body)})
+  try{
+    res.status(200).send({user: await controller.addPermissions(req.body)})
+  }catch(err){
+    res.status(500).send({
+      error: 500,
+      errorMessage: err.message
+    })
+  }
 })
 
 /**
@@ -207,7 +249,14 @@ router.put('/addPermissions', async(req, res) => {
  *         description: create user
  */
 router.delete('/:id', middleware.checkPermission ,async(req, res) => {
-  res.status(200).send({user: await controller.delete(parseInt(req.params.id))})
+  try{
+    res.status(200).send({user: await controller.delete(parseInt(req.params.id))})
+  }catch(err){
+    res.status(500).send({
+      error: 500,
+      errorMessage: err.message
+    })
+  }
 })
 
 module.exports = router;

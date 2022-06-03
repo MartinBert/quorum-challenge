@@ -29,7 +29,14 @@ const controller = require('../controllers/permissions');
  *         description: create permission
  */
 router.get('/', async(req, res) => {
-  res.status(200).send({permissions: await controller.findAll(req.query)});
+  try{
+    res.status(200).send({permissions: await controller.findAll(req.query)});
+  }catch(err){
+    res.status(500).send({
+      error: 500,
+      errorMessage: err.message
+    })
+  }
 });
 
 /**
@@ -52,7 +59,14 @@ router.get('/', async(req, res) => {
  *         description: create permission
  */
 router.get('/:id', async(req, res) => {
-  res.status(200).send({permission: await controller.findById(parseInt(req.params.id))});
+  try{
+    res.status(200).send({permission: await controller.findById(parseInt(req.params.id))});
+  }catch(err){
+    res.status(500).send({
+      error: 500,
+      errorMessage: err.message
+    })
+  }
 }) 
 
 /**
@@ -84,7 +98,14 @@ router.get('/:id', async(req, res) => {
  *         description: create permission
  */
 router.post('/', async(req, res) => {
-  res.status(200).send({permission: await controller.create(req.body)})
+  try{
+    res.status(200).send({permission: await controller.create(req.body)});
+  }catch(err){
+    res.status(500).send({
+      error: 500,
+      errorMessage: err.message
+    })
+  }
 })
 
 /**
@@ -119,7 +140,14 @@ router.post('/', async(req, res) => {
  *         description: edit permission
  */
 router.put('/', async(req, res) => {
-  res.status(200).send({permission: await controller.edit(req.body)})
+  try{
+    res.status(200).send({permission: await controller.edit(req.body)});
+  }catch(err){
+    res.status(500).send({
+      error: 500,
+      errorMessage: err.message
+    })
+  }
 })
 
 
@@ -143,7 +171,14 @@ router.put('/', async(req, res) => {
  *         description: create permission
  */
 router.delete('/:id', async(req, res) => {
-  res.status(200).send({permission: await controller.delete(parseInt(req.params.id))})
+  try{
+    res.status(200).send({permission: await controller.delete(parseInt(req.params.id))})
+  }catch(err){
+    res.status(500).send({
+      error: 500,
+      errorMessage: err.message
+    })
+  }
 })
 
 module.exports = router;
