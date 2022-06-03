@@ -47,5 +47,35 @@ The first time that you open PGAdmin you need to create a New Server with the fo
 
 After you configure PGAdmin you should see the database with name **challenge** used in this project
 
-##### API doc:
+#### API doc:
 Go to http://localhost:3000/api-doc
+
+#### Preset credentials
+##### User 1 (create, update and delete users)
+```
+{
+    email: martinbertello7@gmail.com
+    password: 12345
+}
+```
+##### User 2 (assign permissions and roles)
+```
+{
+    email: juanperez@gmail.com
+    password: 12345
+}
+```
+##### User 3 (create, update and delete permissions)
+```
+{
+    email: antonela@gmail.com
+    password: 12345
+}
+```
+##### User 4 (create, update and delete roles)
+```
+{
+    email: brendaramirez@gmail.com
+    password: 12345
+}
+```
