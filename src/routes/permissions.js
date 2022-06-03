@@ -92,7 +92,7 @@ router.post('/', async(req, res) => {
  * 
  * /permissions:
  *   put:
- *     description: Create permission
+ *     description: Edit permission
  *     produces:
  *       - application/json
  *     requestBody:
@@ -127,7 +127,7 @@ router.put('/', async(req, res) => {
  * @swagger
  * 
  * /permissions/id:
- *   get:
+ *   delete:
  *     description: Ger permission by id
  *     produces:
  *       - application/json
