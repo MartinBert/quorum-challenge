@@ -123,6 +123,14 @@ router.put('/', async(req, res) => {
   res.status(200).send({user: await controller.edit(req.body)})
 })
 
+router.put('/addRoles', async(req, res) => {
+  res.status(200).send({user: await controller.addRoles(req.body)})
+})
+
+router.put('/addPermissions', async(req, res) => {
+  res.status(200).send({user: await controller.addPermissions(req.body)})
+})
+
 /**
  * @swagger
  * 

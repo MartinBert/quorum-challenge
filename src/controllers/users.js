@@ -159,6 +159,30 @@ module.exports = {
     });
   },
 
+  async addRoles(object){
+    const user = await this.findById(parseInt(object.userId));
+    const data = {...user};
+    const rolesToInsert = data.roles.map(role => role.roleId);
+    object.roles.forEach(role => {
+      rolesToInsert.push(role);
+    })
+    data.roles = rolesToInsert;
+    data.permissions = (data.permissions.length > 0) ? data.permissions.map(permission => permission.permissionId) : [];
+    return await this.edit(data);
+  },
+
+  async addPermissions(object){
+    const user = await this.findById(parseInt(object.userId));
+    const data = {...user};
+    const permissionsToInsert = data.permissions.map(permission => permission.permissionId);
+    object.permissions.forEach(permission => {
+      permissionsToInsert.push(permission);
+    })
+    data.roles = (data.roles.length > 0) ? data.roles.map(role => role.roleId) : [];
+    data.permissions = permissionsToInsert;
+    return await this.edit(data);
+  },
+
   delete: async (id) => {
     return await prisma.users.delete({ where: { id } });
   },
