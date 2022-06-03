@@ -50,6 +50,9 @@ After you configure PGAdmin you should see the database with name **challenge** 
 #### API doc:
 Go to http://localhost:3000/api-doc
 
+#### Postman folder with all endpoints:
+Copy https://www.getpostman.com/collections/f399a01f12673b9547c4 and paste in import > link option.
+
 #### Preset credentials
 ##### User 1 (create, update and delete users)
 ```
